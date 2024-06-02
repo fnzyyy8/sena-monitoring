@@ -25,15 +25,15 @@
                 <tbody>
                 @foreach($projects as $project)
                 <tr>
-                    <td>{{str_replace('_','/',$project->id)}}</td>
-                    <td>{{$project->title}}</td>
-                    <td>Medan</td>
-                    <td>{{"Rp ".number_format($project->price,2,',','.')}}</td>
-                    <td>{{date('d-M-y',$project->create_at)}}</td>
-                    <td>{{date('d-M-y',$project->update_at)}}</td>
+                    <td>{{$project['id']}}</td>
+                    <td>{{$project['title']}}</td>
+                    <td>{{$project['area_code']}}</td>
+                    <td>{{$project['price']}}</td>
+                    <td>{{$project['updated_at']}}</td>
+                    <td>{{$project['updated_at']}}</td>
                     <td class="d-flex justify-content-center gap-3">
                         <a href="" class="btn btn-primary">Update</a>
-                        <form method="post" action="/projects/delete/{{$project->id}}">
+                        <form method="post" action="/projects/delete/{{$project['id']}}">
                             @csrf
                             <button class="btn btn-danger" type="submit">Hapus</button>
                         </form>

@@ -1,5 +1,6 @@
 show databases ;
 
-select * from projects;
+select * from areas;
+
 
 TRUNCATE projects;

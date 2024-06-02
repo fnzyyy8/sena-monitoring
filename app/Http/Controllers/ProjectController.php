@@ -31,27 +31,23 @@ class ProjectController extends Controller
 
     public function create(Request $request): RedirectResponse
     {
+        $data = [
+            'title' => $request->input('title'),
+            'price' => $request->input('price'),
+            'area_code' => $request->input('area_code'),
+            'description' => $request->input('description'),
+        ];
 
-        $title = $request->input('title');
-        $price = $request->input('price');
-        $description = $request->input('description');
-        $timestamps = Carbon::now();
-
-
-        $count = Project::query()->count();
-        $year = Carbon::now()->year;
-
-        $id = "PRL" . "_" . $count + 1 . "_" . $year;
-
-        $this->projectService->createProject([
-            'id' => $id,
-            'title' => $title,
-            'price' => $price,
-            'description' => $description,
-            'create_at' => $timestamps,
-            'update_at' => $timestamps,
-        ]);
+        $this->projectService->createProject($data);
         return \redirect('/projects');
+    }
+
+    public function updateView(string $id): Response
+    {
+        $project = $this->projectService->showProject($id);
+
+        return \response()->view('project.update', ['title' => 'Update Project', 'project' => $project]);
+
     }
 
     public function delete($id): RedirectResponse
