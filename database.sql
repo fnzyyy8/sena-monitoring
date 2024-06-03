@@ -1,6 +1,10 @@
 show databases ;
 
-select * from areas;
+select * from contracts;
 
+select *
+from projects;
 
-TRUNCATE projects;
+desc projects;
+
+truncate projects;

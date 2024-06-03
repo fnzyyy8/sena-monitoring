@@ -10,8 +10,10 @@
 <link rel="stylesheet" href="{{asset('bootstrap-5/css/bootstrap.min.css')}}">
 <body>
 
-
+@include('layout.navbar')
+<div class="mt-3">
 @yield('content')
+</div>
 
 </body>
 <script src="{{ asset('bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>

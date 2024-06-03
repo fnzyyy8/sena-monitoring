@@ -15,6 +15,7 @@ class Project extends Model
         'id',
         'title',
         'area_code',
+        'contract_id',
         'price',
         'description',
         'created_at'
@@ -23,5 +24,10 @@ class Project extends Model
     public function area(): BelongsTo
     {
         return $this->belongsTo(Area::class, 'area_code', 'code');
+    }
+
+    public function contract() : BelongsTo
+    {
+        return $this->belongsTo(Contract::class,'contract_id','id');
     }
 }

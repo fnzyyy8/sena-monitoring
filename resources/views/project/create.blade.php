@@ -3,13 +3,8 @@
 @section('content')
 
     <div class="container-fluid">
-        <div class="container-md d-flex justify-content-between align-items-center">
-            <h1>{{$title}}</h1>
-            <div>
-                <a class="btn btn-danger" href="{{url("/projects")}}">Kembali</a>
-            </div>
-        </div>
-        <div class="container-md my-3">
+       @include('project.head.head')
+        <div class="container-fluid my-3">
             <form method="post" action="/projects/create">
                 @csrf
                 <div class="row g-3">
@@ -32,23 +27,29 @@
                             Valid last name is required.
                         </div>
                     </div>
-                    <div class="">
+                </div>
+                <div class="row g-3">
+                    <div class="col-sm-6">
                         <label class="form-label">Area</label>
                         <select class="form-select" name="area_code" required>
-                            <option value="MDN">Medan</option>
-                            <option value="BTM">Batam</option>
-                            <option value="PKB">Pekanbaru</option>
-                            <option value="DUM">Dumai</option>
-                            <option value="PLB">Palembang</option>
-                            <option value="LPG">Lampung</option>
+                            @foreach($areas as $area)
+                                <option value="{{$area->code}}">{{$area->area}}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <div class="">
-                        <label class="form-label" for="floatingTextarea2">Deskripsi</label>
-                        <textarea class="form-control" id="floatingTextarea2"
-                                  style="height: 300px" name="description"></textarea>
+                    <div class="col-sm-6">
+                        <label class="form-label">Area</label>
+                        <select class="form-select" name="contract_id" required>
+                            @foreach($contracts as $contract)
+                                <option value="{{$contract['id']}}">{{$contract['name']}}</option>
+                            @endforeach
+                        </select>
                     </div>
-
+                </div>
+                <div class="">
+                    <label class="form-label" for="floatingTextarea2">Deskripsi</label>
+                    <textarea class="form-control" id="floatingTextarea2"
+                              style="height: 300px" name="description"></textarea>
                 </div>
                 <div class="mt-3 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">Submit</button>

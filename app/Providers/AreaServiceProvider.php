@@ -6,18 +6,18 @@ use App\Services\AreaService;
 use App\Services\Impl\AreaServiceImpl;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class AreaServiceProvider extends ServiceProvider
 {
     /**
-     * Register any application services.
+     * Register services.
      */
     public function register(): void
     {
-
+        $this->app->singleton(AreaService::class,AreaServiceImpl::class);
     }
 
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      */
     public function boot(): void
     {
