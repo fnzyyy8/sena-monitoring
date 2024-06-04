@@ -8,20 +8,20 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <td>ID Pek</td>
-                    <td>Uraian</td>
-                    <td>Contract</td>
-                    <td>Area</td>
-                    <td>Nilai Rencana</td>
-                    <td>Inisiasi</td>
-                    <td>Update</td>
-                    <td></td>
+                    <th>ID Pek</th>
+                    <th>Uraian</th>
+                    <th>Contract</th>
+                    <th>Area</th>
+                    <th>Nilai Rencana</th>
+                    <th>Inisiasi</th>
+                    <th>Update</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($projects as $project)
                     <tr>
-                        <td>{{$project['idShow']}}</td>
+                        <td>{{$project['id_show']}}</td>
                         <td>{{$project['title']}}</td>
                         <td>{{$project['contract_id']}}</td>
                         <td>{{$project['area_code']}}</td>

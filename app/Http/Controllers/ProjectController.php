@@ -9,6 +9,7 @@ use App\Services\ProjectService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use function PHPUnit\Framework\isEmpty;
 
 class ProjectController extends Controller
 {
@@ -25,11 +26,18 @@ class ProjectController extends Controller
 
     public function index(): Response
     {
-        $head = $this->head('Projects', 'create', 'Create');
-        $projects = $this->projectService->read();
+        $contracts = $this->contractService->read();
+
+        if ($contracts->count() == 0) {
+            return \response()->view('project.404', []);
+        } else {
+            $head = $this->head('Projects', 'create', 'Create');
+            $projects = $this->projectService->read();
+
+            return \response()->view('project.index', ['projects' => $projects, 'head' => $head]);
+        }
 
 
-        return \response()->view('project.index', ['projects' => $projects, 'head' => $head]);
     }
 
     public function createView(): Response
@@ -37,7 +45,7 @@ class ProjectController extends Controller
         $head = $this->head('Create Project');
         $contracts = $this->contractService->read();
         $areas = $this->areaService->read();
-        return \response()->view('project.create', ['head' => $head, 'areas' => $areas,'contracts' => $contracts]);
+        return \response()->view('project.create', ['head' => $head, 'areas' => $areas, 'contracts' => $contracts]);
     }
 
     public function create(Request $request): RedirectResponse
@@ -51,7 +59,7 @@ class ProjectController extends Controller
             'description' => $request->input('description'),
         ];
 
-        $this->projectService->createProject($data);
+        $this->projectService->create($data);
         return \redirect('/projects');
     }
 
@@ -60,22 +68,38 @@ class ProjectController extends Controller
         $head = $this->head("Update");
         $project = $this->projectService->readOne($id);
         $areas = $this->areaService->readExcept($project['area_code']->code);
+        $contracts = $this->contractService->readExcept($project['contract_id']->id);
 
-        return \response()->view('project.update', ['head' => $head, 'project' => $project, 'areas' => $areas]);
+        return \response()->view('project.update',
+            [
+                'head' => $head,
+                'project' => $project,
+                'areas' => $areas,
+                'contracts' => $contracts
+            ]);
     }
 
-    public function update()
+    public function update($id, Request $request): RedirectResponse
     {
+        $data = [
+            'title' => $request->input('title'),
+            'price' => $request->input('price'),
+            'area_code' => $request->input('area_code'),
+            'contract_id' => $request->input('contract_id'),
+            'description' => $request->input('description'),
+        ];
+
+        $this->projectService->update($id, $data);
 
     }
 
     public function delete($id): RedirectResponse
     {
-        $this->projectService->deleteProject($id);
+        $this->projectService->delete($id);
         return \redirect('/projects');
     }
 
-    protected function head($title, $path = null, $buttonText = 'Back')
+    public function head($title, $path = null, $buttonText = 'Back')
     {
         if ($buttonText == 'Back') {
             return [

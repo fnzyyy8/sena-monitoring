@@ -33,7 +33,7 @@
                         <label class="form-label">Area</label>
                         <select class="form-select" name="area_code" required>
                             @foreach($areas as $area)
-                                <option value="{{$area->code}}">{{$area->area}}</option>
+                                <option value="{{$area['code']}}">{{$area['area']}}</option>
                             @endforeach
                         </select>
                     </div>

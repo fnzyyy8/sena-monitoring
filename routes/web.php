@@ -15,7 +15,8 @@ Route::controller(ProjectController::class)
         Route::get('/create', 'createView')->name('projects.createView');
         Route::post('/create', 'create')->name('projects.create');
         Route::post('/delete/{id}', 'delete')->name('projects.delete');
-        Route::get('/update/{id}/edit', 'updateView')->name('contracts.editView');
+        Route::get('/update/{id}/edit', 'updateView')->name('contracts.updateView');
+        Route::post('/update/{id}', 'update')->name('contracts.update');
     });
 
 

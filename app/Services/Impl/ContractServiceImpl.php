@@ -12,19 +12,16 @@ class ContractServiceImpl implements ContractService
     {
         $contracts = Contract::query()->get();
 
-        $transformedContracts = $contracts->map(function ($contract) {
-
-            $haveChild = $this->haveChild($contract->id);
-//            dd($haveChild);
+        $contracts = $contracts->map(function ($contract) {
             return [
                 'id' => $contract->id,
                 'name' => $contract->name,
                 'description' => $contract->description,
-                'haveChild' => $haveChild,
+                'haveChild' => $contract->project->count() > 0,
             ];
         });
 
-        return $transformedContracts;
+        return $contracts;
     }
 
     public function readOne(string $id)
@@ -44,15 +41,15 @@ class ContractServiceImpl implements ContractService
         Contract::query()->findOrFail($id)->delete();
     }
 
-    public function haveChild(string $id): bool
+    public function haveChild(string $id)
     {
-        $contract = Contract::query()->find($id);
-        $projects = $contract->project->count();
-
-        if ($projects > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        // TODO: Implement haveChild() method.
     }
+
+    public function readExcept(string $id)
+    {
+        return Contract::query()->where('id', '!=', $id)->get();
+
+    }
+
 }

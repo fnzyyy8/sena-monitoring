@@ -7,16 +7,16 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <td>
+                    <th>
                         Code
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         Contract
-                    </td>
-                    <td>
+                    </th>
+                    <th>
                         Keterangan
-                    </td>
-                    <td></td>
+                    </th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>

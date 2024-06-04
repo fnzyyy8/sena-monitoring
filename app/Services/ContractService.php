@@ -12,6 +12,5 @@ interface ContractService
 
     public function delete(string $id);
 
-    public function haveChild(string $id);
 
 }
