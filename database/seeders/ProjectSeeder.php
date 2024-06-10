@@ -13,11 +13,11 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
-        Project::query()->create([
-            'id' => 'MDN_PRL_1_24',
-            'title'=>'Pekerjaan A',
-            'price' =>320000000,
-            'description'=>'Pekerjaan A ini mantap',
-        ]);
-    }
+       $project = new Project();
+       $project->id = "MDN_PRL_0001_24";
+       $project->title = "Project 124";
+       $project->area_id = "MDN";
+       $project->price =200000;
+       $project->save();
+     }
 }

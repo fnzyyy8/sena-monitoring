@@ -26,4 +26,5 @@ class AreaTest extends TestCase
         self::assertNotNull($area);
     }
 
+
 }

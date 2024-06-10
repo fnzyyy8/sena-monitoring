@@ -4,7 +4,7 @@
     <div class="container-fluid">
         @include('project.head.head')
         <div class="container-fluid my-2">
-            <p>{{$project['idShow']}}</p>
+            <p>{{$project->id}}</p>
         </div>
         <form action="#">
             <div class="row g-3 my-3">
@@ -12,13 +12,13 @@
                     <label class="form-label" for="title">
                         Judul Pekerjaan
                     </label>
-                    <input type="text" value="{{$project['title']}}" name="title" class="form-control">
+                    <input type="text" value="{{$project->title}}" name="title" class="form-control">
                 </div>
                 <div class="col-sm-6">
                     <label for="lastName" class="form-label">Nilai Pekerjaan</label>
                     <div class="input-group">
                         <span class="input-group-text">Rp</span>
-                        <input type="text" class="form-control" id="lastName" value="{{$project['price']}}" required=""
+                        <input type="text" class="form-control" id="lastName" value="{{$project->price}}" required=""
                                name="price">
                     </div>
                     <div class="invalid-feedback">
@@ -33,7 +33,7 @@
                     </label>
                     <select class="form-select" name="contract_id" id="area">
                         <option selected
-                                value="{{$project['contract_id']->id}}">{{$project['contract_id']->name}}</option>
+                                value="{{$project->contract_id}}">{{$project->contract->name}}</option>
                         @foreach($contracts as $contract)
                             <option value="{{$contract->id}}">{{$contract->name}}</option>
                         @endforeach
@@ -45,16 +45,16 @@
                     </label>
                     <select class="form-select" name="area" id="area">
                         <option selected
-                                value="{{$project['area_code']->code}}">{{$project['area_code']->area}}</option>
+                                value="{{$project->area_id}}">{{$project->area->name}}</option>
                         @foreach($areas as $area)
-                            <option value="{{$area->code}}">{{$area->area}}</option>
+                            <option value="{{$area->id}}">{{$area->name}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="">
                     <label class="form-label" for="floatingTextarea2">Deskripsi</label>
                     <textarea class="form-control" id="floatingTextarea2"
-                              style="height: 300px" name="description">{{$project['description']}}</textarea>
+                              style="height: 300px" name="description">{{$project->description}}</textarea>
                 </div>
             </div>
             <div class="mt-3 d-flex justify-content-end">

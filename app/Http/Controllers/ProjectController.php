@@ -1,15 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Area;
 use App\Services\AreaService;
 use App\Services\ContractService;
 use App\Services\ProjectService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use function PHPUnit\Framework\isEmpty;
 
 class ProjectController extends Controller
 {
@@ -28,11 +25,13 @@ class ProjectController extends Controller
     {
         $contracts = $this->contractService->read();
 
+
         if ($contracts->count() == 0) {
             return \response()->view('project.404', []);
         } else {
             $head = $this->head('Projects', 'create', 'Create');
             $projects = $this->projectService->read();
+
 
             return \response()->view('project.index', ['projects' => $projects, 'head' => $head]);
         }
@@ -54,7 +53,7 @@ class ProjectController extends Controller
         $data = [
             'title' => $request->input('title'),
             'price' => $request->input('price'),
-            'area_code' => $request->input('area_code'),
+            'area_id' => $request->input('area_id'),
             'contract_id' => $request->input('contract_id'),
             'description' => $request->input('description'),
         ];
@@ -67,8 +66,8 @@ class ProjectController extends Controller
     {
         $head = $this->head("Update");
         $project = $this->projectService->readOne($id);
-        $areas = $this->areaService->readExcept($project['area_code']->code);
-        $contracts = $this->contractService->readExcept($project['contract_id']->id);
+        $areas = $this->areaService->readExcept($project->id);
+        $contracts = $this->contractService->readExcept($project->contract_id);
 
         return \response()->view('project.update',
             [
@@ -84,12 +83,12 @@ class ProjectController extends Controller
         $data = [
             'title' => $request->input('title'),
             'price' => $request->input('price'),
-            'area_code' => $request->input('area_code'),
+            'area_id' => $request->input('area_id'),
             'contract_id' => $request->input('contract_id'),
             'description' => $request->input('description'),
         ];
 
-        $this->projectService->update($id, $data);
+       return $this->projectService->update($id, $data);
 
     }
 

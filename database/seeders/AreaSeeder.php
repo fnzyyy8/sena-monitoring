@@ -15,28 +15,32 @@ class AreaSeeder extends Seeder
     {
         Area::query()->insert([
             [
-                'code' => 'MDN',
-                'area' => 'Medan'
+                'id' => 'MDN',
+                'name' => 'Medan'
             ],
             [
-                'code' => 'PKB',
-                'area' => 'Pekanbaru'
+                'id' => 'PKB',
+                'name' => 'Pekanbaru'
             ],
             [
-                'code' => 'DUM',
-                'area' => 'Dumai'
+                'id' => 'DUM',
+                'name' => 'Dumai'
             ],
             [
-                'code' => 'BTM',
-                'area' => 'Batam'
+                'id' => 'BTM',
+                'name' => 'Batam'
             ],
             [
-                'code' => 'PLB',
-                'area' => 'Palembang'
+                'id' => 'PLB',
+                'name' => 'Palembang'
             ],
             [
-                'code'=>'LPG',
-                'area' => 'Lampung'
+                'id'=>'LPG',
+                'name' => 'Lampung'
+            ],
+            [
+                'id'=>'SOR',
+                'name' => 'Sumatera Utara'
             ]
         ]);
     }

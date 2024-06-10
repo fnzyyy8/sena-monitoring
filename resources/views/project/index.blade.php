@@ -21,19 +21,19 @@
                 <tbody>
                 @foreach($projects as $project)
                     <tr>
-                        <td>{{$project['id_show']}}</td>
-                        <td>{{$project['title']}}</td>
-                        <td>{{$project['contract_id']}}</td>
-                        <td>{{$project['area_code']}}</td>
-                        <td>{{$project['price']}}</td>
-                        <td>{{$project['updated_at']}}</td>
-                        <td>{{$project['updated_at']}}</td>
+                        <td>{{$project->idShow}}</td>
+                        <td>{{$project->title}}</td>
+                        <td>{{$project->contract_id}}</td>
+                        <td>{{$project->area->name}}</td>
+                        <td>{{$project->priceShow}}</td>
+                        <td>{{$project->created_at}}</td>
+                        <td>{{$project->updated_at}}</td>
                         <td class="d-flex justify-content-center gap-3">
-                            <form action="/projects/update/{{$project['id']}}/edit">
+                            <form action="/projects/update/{{$project->id}}/edit">
                                 @csrf
                                 <button class="btn btn-primary" type="submit" >Update</button>
                             </form>
-                            <form method="post" action="/projects/delete/{{$project['id']}}">
+                            <form method="post" action="/projects/delete/{{$project->id}}">
                                 @csrf
                                 <button class="btn btn-danger" type="submit">Hapus</button>
                             </form>

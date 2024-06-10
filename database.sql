@@ -1,10 +1,5 @@
-show databases ;
+alter table projects drop column area_code;
 
-select * from contracts;
+drop table areas;
 
-select *
-from projects;
-
-desc projects;
-
-truncate projects;
+select * from projects;

@@ -31,9 +31,9 @@
                 <div class="row g-3">
                     <div class="col-sm-6">
                         <label class="form-label">Area</label>
-                        <select class="form-select" name="area_code" required>
+                        <select class="form-select" name="area_id" required>
                             @foreach($areas as $area)
-                                <option value="{{$area['code']}}">{{$area['area']}}</option>
+                                <option value="{{$area['id']}}">{{$area['name']}}</option>
                             @endforeach
                         </select>
                     </div>

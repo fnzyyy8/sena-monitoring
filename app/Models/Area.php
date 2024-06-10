@@ -2,25 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Area extends Model
 {
-
     protected $table = 'areas';
-    protected $primaryKey = 'code';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
     public $timestamps = false;
-    protected $fillable = [
-        'code',
-        'name'
-    ];
 
-    public function project() : HasMany
+    public function project() : BelongsTo
     {
-        return $this->hasMany(Project::class,'area_code','code');
+       return $this->belongsTo(Project::class,'area_id','id');
     }
 }

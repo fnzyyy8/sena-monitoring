@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('username', 100)->nullable(false)->unique();
             $table->string('password', 100)->nullable(false);
             $table->string('role',100)->nullable(false);
-            $table->timestamp('email_verified_at')->nullable(true);
             $table->timestamp('created_at')->nullable(false)->useCurrent();
             $table->timestamp('updated_at')->nullable(false)->useCurrent();
         });

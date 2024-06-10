@@ -4,6 +4,8 @@ namespace App\Services\Impl;
 
 use App\Models\Area;
 use App\Services\AreaService;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class AreaServiceImpl implements AreaService
 {
@@ -13,8 +15,8 @@ class AreaServiceImpl implements AreaService
         return Area::query()->get();
     }
 
-    public function readExcept(string $areaCode)
+    public function readExcept(string $areaId) : object
     {
-        return Area::query()->where('code','!=',$areaCode)->get();
+        return Area::query()->where('id','!=',$areaId)->get();
     }
 }
